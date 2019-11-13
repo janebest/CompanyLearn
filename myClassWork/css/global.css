@@ -87,7 +87,7 @@ textarea::-ms-placeholder{opacity:1;}
 .children.navbar .layer{height: 100%;}
 .children.navbar .list{padding-top: 150px;}
 
-.header{position:relative;z-index:3;}
+.header{z-index:3;}
 .header .wrap .logo{position:absolute;left:0;top:7px;background:url(../image/logo.png) left center no-repeat;width:115px;height:100%;}
 .header .wrap .logo a{display:block;height:100%;}
 .header .nav_main{position:absolute;left:50%;top:0;height:100%;width:790px;text-align:center;margin-left:-395px;font-size:0;}

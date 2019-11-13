@@ -4,6 +4,7 @@
     margin: auto;
     list-style: none;
     text-decoration: none;
+    text-decoration: none;
 }
 
 img {
@@ -38,6 +39,7 @@ img {
 
 .header-logo img {
     width: 100%;
+    margin-top: 4px;
 }
 
 .header .nav {
@@ -90,7 +92,10 @@ img {
     text-decoration: underline;
     color: #ffffff;
 }
-
+.tool{
+    overflow: hidden;
+    background:url(../img/ico_tools_search.png) left center no-repeat;
+}
 /* 内容 */
 /* banner */
 .c-banner {
@@ -919,7 +924,7 @@ img {
 }
  .leftMenu .topMenu img{
 	float: left;
-	padding-right: 20px;
+	padding-right: 3px;
 }
  .leftMenu .topMenu .banshi{
 	width: 25px;
@@ -947,7 +952,7 @@ img {
 	height: 60px;
 	line-height: 60px;
 	text-align: center;
-	width: 260px;
+	width: 190px;
 	float: left;
 }
 .menu_list ul li .xiala{
@@ -1238,4 +1243,7 @@ img {
     border: 1px solid #ddd;
     padding: 0 10px;
     color: #fff;
+}
+.aa{
+    left: 0px!important;
 }

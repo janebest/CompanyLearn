@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="./css/global.css">
-    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <link rel="stylesheet" href="css/common.css">
     <title>主页</title>
 </head>
 
@@ -19,7 +18,7 @@
                 <a href="##"><img src="img/title-logo.png" alt=""></a>
             </div>
             <ul class="nav">
-                <li><a href="##">首页</a></li>
+                <li><a href="index.html">首页</a></li>
                 <li>
                     <a href="##">导览</a>
                     <div class="header-nav-box">
@@ -82,6 +81,9 @@
                     </div>
                 </li>
                 <li><a href="##">关于</a></li>
+                <li>
+                    <a href="login.html">会员中心</a>
+                </li>
             </ul>
         </div>
         <!-- 内容 -->
@@ -120,7 +122,8 @@
                         <div>
                             <a>
                                 <div class="box1">
-                                    <div class="img"><img alt="" title="" class=" lazyloaded" src="./img/bird.png">
+                                    <div class="img"><img alt="" title="" data-src="./img/bird.png" class=" lazyloaded"
+                                            src="./img/bird.png">
                                     </div>
                                 </div>
                             </a>
@@ -338,7 +341,11 @@
                             </div>
                             <div class="num">
                                 <p><img src="./img/indexicon1.png" width="22" alt=""></p>
-                                <b>1,862,690</b>
+                                <b>
+                                    <div id="box_num">
+                                        <div id="count_num"></div>
+                                    </div>
+                                </b>
                             </div>
                             <div class="tip" style="cursor:pointer;">
                                 <span>藏品<b></b>分类查询</span>
@@ -822,6 +829,7 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script>
     $(function () {
+        // 头部二级导航
         var navLi = $(".header .nav li");
         navLi.mouseover(function () {
             $(this).find("a").addClass("current");
@@ -831,7 +839,7 @@
             $(this).find("a").removeClass("current");
             $(this).find(".header-nav-box").stop().slideUp();
         })
-
+        // 导览地图列表展开收回
         //绑定元素点击事件
         $(".menu_list ul li").click(function () {
             //判断对象是显示还是隐藏
@@ -861,12 +869,10 @@
                 }
             }
         });
-
         //阻止事件冒泡，子元素不再继承父元素的点击事件
         $('.div1').click(function (e) {
             e.stopPropagation();
         });
-
         //点击子菜单为子菜单添加样式，并移除所有其他子菜单样式
         $(".menu_list ul li .div1 .zcd").click(function () {
             //设置当前菜单为选中状态的样式，并移除同类同级别的其他元素的样式
@@ -880,7 +886,7 @@
                 }
             });
         });
-
+        // banner轮播
         //定时器返回值
         var time = null;
         //记录当前位子
@@ -891,14 +897,12 @@
         // var imgLength =0;
         //设置底部第一个按钮样式
         $(".c-banner .jumpBtn ul li[jumpImg=" + nexImg + "]").css("background-position", "right");
-
         //页面加载
         $(document).ready(function () {
             // dynamicData();
             //启动定时器,设置时间为3秒一次
             time = setInterval(intervalImg, 3000);
         });
-
         //点击上一张
         $(".preImg").click(function () {
             //清楚定时器
@@ -927,18 +931,15 @@
             }, 1000, function () {
                 $(".c-banner ul li").eq(nowImg).css("display", "none");
             });
-
             //启动定时器,设置时间为3秒一次
             time = setInterval(intervalImg, 3000);
         })
-
         //点击下一张
         $(".nexImg").click(function () {
             clearInterval(time);
             intervalImg();
             time = setInterval(intervalImg, 3000);
         })
-
         //轮播图
         function intervalImg() {
             if (nexImg < imgLength - 1) {
@@ -946,7 +947,6 @@
             } else {
                 nexImg = 0;
             }
-
             //将当前图片试用绝对定位,下一张图片试用相对定位
             $(".c-banner .banner ul img").eq(nexImg - 1).css("position", "absolute");
             $(".c-banner .banner ul img").eq(nexImg).css("position", "relative");
@@ -963,7 +963,6 @@
             $(".c-banner .jumpBtn ul li").css("background-position", "left");
             $(".c-banner .jumpBtn ul li[jumpImg=" + nexImg + "]").css("background-position", "right");
         }
-
         //轮播图底下按钮
         //动态数据加载的试用应放在请求成功后执行该代码,否则按钮无法使用
         $(".c-banner .jumpBtn ul li").each(function () {
@@ -1043,6 +1042,39 @@
             }
         }();
         tabs.set("nav", "menu_con"); //执行
+    })
+    // 故宫 藏品数字
+    $(function () {
+        $("#count_num").numberRock({
+            lastNumber: 112535,
+            duration: 1000,
+            easing: 'swing', //慢快慢
+        });
+    });
+    $.fn.numberRock = function (options) {
+        var defaults = {
+            lastNumber: 100,
+            duration: 2000,
+            easing: 'swing' //swing(默认 : 缓冲 : 慢快慢)  linear(匀速的)
+        };
+        var opts = $.extend({}, defaults, options);
+
+        $(this).animate({
+            num: "numberRock",
+        }, {
+            duration: opts.duration,
+            easing: opts.easing,
+            complete: function () {
+                console.log("success");
+            },
+            step: function (a, b) { //可以检测我们定时器的每一次变化
+                $(this).html(parseInt(b.pos * opts.lastNumber));
+            }
+        });
+
+    }
+    $(".sHoverItem").hover(function () {
+        $(this).children().toggleClass("aa")
     })
 </script>
 
