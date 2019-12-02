@@ -368,11 +368,10 @@
                             </a>
                         </div>
                     </div>
-                    <ul class="list">
+                    <ul class="list" id="list">
                         <li class="sHoverItem" style="position: relative; overflow: hidden;">
                             <img alt="" title="" class=" lazyloaded" src="./img/list1.jpg">
-                            <div class="mask"
-                                style="position: absolute; width:313px;height: 378px; top: 0px; left: 313px; z-index: 99; opacity: 1;">
+                            <div class="mask">
                                 <a href="##">
                                     <p>恽寿平山水花鸟图册</p>
                                     <p>清</p>
@@ -388,8 +387,7 @@
                         </li>
                         <li class="sHoverItem" style="position: relative; overflow: hidden;">
                             <img alt="" title="" class=" lazyloaded" src="./img/list2.jpg">
-                            <div class="mask"
-                                style="position: absolute; width:313px;height: 378px; top: 0px; left: 313px; z-index: 99; opacity: 1;">
+                            <div class="mask">
                                 <a href="##">
                                     <p>剔红双层牡丹纹圆盘</p>
                                     <p>明永乐</p>
@@ -403,8 +401,7 @@
                         </li>
                         <li class="sHoverItem" style="position: relative; overflow: hidden;">
                             <img alt="" title="" class=" lazyloaded" src="./img/list3.jpg">
-                            <div class="mask"
-                                style="position: absolute; width:313px;height: 378px; top: 0px; left: 313px; z-index: 99; opacity: 1;">
+                            <div class="mask">
                                 <a href="##">
                                     <p>郎世宁花鸟图册</p>
                                     <p>清</p>
@@ -578,9 +575,9 @@
                         </div>
                         <div class="box1">
                             <div class="center">
-                                <div class="map" id="image_map" style="cursor: default;">
-                                    <img id="mmap" class=" lazyloaded" src="./img/map.jpg"
-                                        style="display: block; width: 100%; top: 0px; left: 0px;">
+                                <div class="map" style="cursor: default;">
+                                    <img id="img_04" src="img/map.jpg" width="384" height="240"
+                                        style="border: 2px solid #666666;" />
                                 </div>
                                 <ul class="tools">
                                     <li>
@@ -608,7 +605,7 @@
                     </div>
                     <div class="box">
                         <div class="map">
-
+                            <div id="container"></div>
                         </div>
                         <div class="box1">
                             <div id="menu">
@@ -827,8 +824,8 @@
         </div>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.7&key=Jane_map"></script>
 <script>
-    $(function () {
         // 头部二级导航
         var navLi = $(".header .nav li");
         navLi.mouseover(function () {
@@ -1042,7 +1039,6 @@
             }
         }();
         tabs.set("nav", "menu_con"); //执行
-    })
     // 故宫 藏品数字
     $(function () {
         $("#count_num").numberRock({
@@ -1065,7 +1061,7 @@
             duration: opts.duration,
             easing: opts.easing,
             complete: function () {
-                console.log("success");
+                //console.log("success");
             },
             step: function (a, b) { //可以检测我们定时器的每一次变化
                 $(this).html(parseInt(b.pos * opts.lastNumber));
@@ -1073,9 +1069,24 @@
         });
 
     }
-    $(".sHoverItem").hover(function () {
-        $(this).children().toggleClass("aa")
-    })
+    //图片右移
+    var list = document.getElementById("list");
+    var lis = list.getElementsByTagName("li");
+    for (var i = 0; i < lis.length; i++) {
+        lis[i].onmouseover = function () {
+            this.getElementsByClassName("mask")[0].style = "left:0px;transition-duration: 2s;";
+        }
+        lis[i].onmouseout = function () {
+            this.getElementsByClassName("mask")[0].style = "left:-313px;transition-duration: 2s;";
+        }
+    }
+    // 高德地图api
+    var map = new AMap.Map('container', {
+        zoom: 11, //级别
+        center: [116.397428, 39.90923], //中心点坐标
+        viewMode: '3D' //使用3D视图
+    });
+
 </script>
 
 </html>

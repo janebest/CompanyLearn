@@ -248,6 +248,7 @@ body.is-login {
 .header{
   position: relative;
   background: #ffffff;
+  border-bottom: 2px solid #e7e7e7;
 }
 .header .nav li a{
   color: #222222;

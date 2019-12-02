@@ -1,10 +1,10 @@
 @charset "utf-8";
 
 * {
-    margin: auto;
     list-style: none;
     text-decoration: none;
     text-decoration: none;
+    font-family: SimHei;
 }
 
 img {
@@ -39,7 +39,7 @@ img {
 
 .header-logo img {
     width: 100%;
-    margin-top: 4px;
+    margin-top: 7px;
 }
 
 .header .nav {
@@ -101,13 +101,13 @@ img {
 .c-banner {
     width: 100%;
     position: relative;
-    height: 800px;
+    height: 1000px;
     margin-bottom: 26px;
 }
 
 .banner img {
     width: 100%;
-    height: 800px;
+    height: 1000px;
 }
 
 .c-banner .banner ul {
@@ -213,21 +213,12 @@ img {
     margin-bottom: 24px;
     overflow: hidden;
 }
-
-.block1 .left {
-    width: 742px;
-    float: left;
-}
-
-.block1 .left .box1 {
+.box1_back{
     background: url(../img/box1.jpg) no-repeat;
-    height: 380px;
-    margin-bottom: 24px;
-    -webkit-transform: translateY(0);
-    opacity: 1;
-    position: relative;
-    z-index: 99;
     background-size: 100%;
+}
+.block1 .left .box1 {
+    height: 380px;
 }
 
 .block1 .left .box1 .img {
@@ -240,7 +231,6 @@ img {
 .block1 .left .box1 .img img {
     top: 0;
     position: absolute;
-    max-height: none;
     border: 0;
     outline: 0;
     vertical-align: middle;
@@ -274,7 +264,7 @@ img {
 .block1 .left .box2 .news {
     overflow: hidden;
     color: #fff;
-    padding: 6% 3% 2% 2%;
+    padding: 5% 3% 2% 2%;
     ;
 }
 
@@ -290,8 +280,8 @@ img {
     color: #fff;
     position: relative;
     line-height: 1;
-    width: 4em;
-    padding: 10px 17px;
+    width: 1em;
+    padding: 14px 17px;
 }
 
 .block1 .title .more i {
@@ -321,7 +311,7 @@ img {
 }
 
 .block1 .title h1 .s1 {
-    margin-right: 48px;
+    margin-right: 32px;
 }
 
 .block1 .box2 .list1 {
@@ -386,7 +376,6 @@ img {
 }
 
 .block1 .box3 {
-    margin-bottom: 22px;
     transform: translateY(0);
     -webkit-transform: translateY(0);
     opacity: 1;
@@ -394,11 +383,12 @@ img {
 
 .block1 .box3 ul {
     overflow: hidden;
+    padding: 0;
 }
 
 .block1 .box3 li {
-    width: 158px;
-    height: 217px;
+    width: 204px;
+    height: 256px;
     overflow: hidden;
     float: left;
     position: relative;
@@ -644,19 +634,18 @@ img {
 
 .block2 {
     margin-bottom: 22px;
-    height: 378px;
+    /* height: 378px; */
     overflow: hidden;
     position: relative;
 }
 
 .block2 .box {
-    width: 287px;
-    margin-right: 24px;
+    width: 340px;
+    background-size: 100%;
     background-image: url(../img/home_block2_box_bg1280.jpg);
     position: relative;
-    height: 100%;
+    height: 408px;
     float: left;
-    margin-right: 30px;
 }
 
 .block2 .box .title {
@@ -701,7 +690,8 @@ img {
 .block2 .num {
     overflow: hidden;
     color: #fff;
-    margin: -27px 30px 10px;
+    /* margin: -27px 30px 10px; */
+    margin: 0px 34px 0px 50px;
 }
 
 .block2 .num p {
@@ -758,7 +748,6 @@ img {
 
 .block2 .list li {
     width: 313px;
-    height: 378px;
     position: relative;
     float: left;
 }
@@ -1244,6 +1233,7 @@ img {
     padding: 0 10px;
     color: #fff;
 }
-.aa{
-    left: 0px!important;
-}
+#container {
+    width:1200px; 
+    height: 600px; 
+}  
