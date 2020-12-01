@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mian</title>
+    <link rel="stylesheet" href="../public/fontawesome-free-5.11.2-web/css/all.css">
+    <link rel="stylesheet" href="../public/element/index.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <script src="../public/js/vue.min.js"></script>
+    <script src="../public/element/index.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="main">
+            <h3 class="color_333 margin_bottom">数据展示</h3>
+            <el-row :gutter="20">
+                <el-col :span="6">
+                    <el-row class="data_item color_org align" type='flex'>
+                        <el-col :span="6"><i class="fas fa-address-book f22"></i></el-col>
+                        <el-col :span="18" class="t_right">
+                            <h3>1.003747 BTC</h3>
+                            <span>Wallet BTC balance</span>
+                        </el-col>
+                    </el-row>
+                </el-col>
+                <el-col :span="6">
+                    er
+                </el-col>
+            </el-row>
+        </div>
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {}
+        },
+        methods: {}
+    })
+</script>
+
+</html>

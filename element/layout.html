@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>elementui框架</title>
+    <link rel="stylesheet" href="../public/element/index.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <script src="../public/js/vue.min.js"></script>
+    <script src="../public/element/index.js"></script>
+</head>
+<style>
+    body::-webkit-scrollbar {
+        display: none;
+    }
+</style>
+
+<body>
+    <div id="app" v-cloak>
+        <el-container :style="defaultHeight">
+            <el-scrollbar class="main_aside">
+                <el-aside :style="menu_width">
+                    <div id="aside_logo"><i class="el-icon-menu"></i><span v-show="open_menu_type">TEST</span></div>
+                    <transition name="el-zoom-in-center">
+                        <el-menu default-active="1" class="left_menu" @open="handleOpen" @close="handleClose"
+                            background-color="#20222a" text-color="#fff" active-text-color="#2d8cf0"
+                            :collapse="isCollapse" :style="menu_width" unique-opened>
+                            <el-menu-item v-for="(item,index) in nav_data" :key="index" :index="item.id"
+                                v-if="!item.is_child" @click="jump_main(item.url,item.name,'')">
+                                <i :class="item.icon" v-if="item.icon"></i>
+                                <span slot="title">{{item.name}}</span>
+                            </el-menu-item>
+                            <el-submenu v-for="(item,index) in nav_data" :key="index" :index="item.id"
+                                v-if="item.is_child">
+                                <template slot="title">
+                                    <i :class="item.icon" v-if="item.icon"></i>
+                                    <span>{{item.name}}</span>
+                                </template>
+                                <el-menu-item-group>
+                                    <el-menu-item v-for="(s,i) in item.child" :key="i" :index="s.id"
+                                        @click="jump_main(s.url,item.name,s.name)">
+                                        <i :class="s.icon" v-if="s.icon"></i>{{s.name}}
+                                    </el-menu-item>
+                                </el-menu-item-group>
+                            </el-submenu>
+                        </el-menu>
+                    </transition>
+                </el-aside>
+            </el-scrollbar>
+            </el-scrollbar>
+            <el-container>
+                <el-header style="width: 100%;">
+                    <el-row type="flex" class="align">
+                        <el-col :span="4">
+                            <a href="javascript:;" :class="open_menu_btn" style="font-size: 26px;"
+                                @click="open_menu"></a>
+                        </el-col>
+                        <el-col :span="20">
+                            <span class="name">Bubbly Dashboard</span>
+                            <el-menu class="el-menu-top" mode="horizontal">
+                                <el-submenu index="1">
+                                    <template slot="title">
+                                        <el-avatar shape="square" :size="40"
+                                            src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg">
+                                        </el-avatar>
+                                        <span>我的</span>
+                                    </template>
+                                    <el-menu-item index="2-1"><i class="el-icon-s-tools"></i>个人设置</el-menu-item>
+                                    <el-menu-item index="2-2"><i class="el-icon-arrow-right"></i>退出登录</el-menu-item>
+                                </el-submenu>
+                            </el-menu>
+                        </el-col>
+                    </el-row>
+                </el-header>
+                <el-main style="overflow-y: hidden;" v-loading="main_loading">
+                    <div id="index_breadcrumb">
+                        <el-breadcrumb>
+                            <el-breadcrumb-item>{{breadcrumb_a}}</el-breadcrumb-item>
+                            <el-breadcrumb-item>{{breadcrumb_b}}</el-breadcrumb-item>
+                        </el-breadcrumb>
+                    </div>
+                    <iframe id="index_iframe" :src="main_url"></iframe>
+                </el-main>
+            </el-container>
+        </el-container>
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                main_url: 'main.html',
+                main_loading: false,
+                open_menu_type: true,
+                isCollapse: false,
+                breadcrumb_a: '首页',
+                breadcrumb_b: '',
+                defaultHeight: {
+                    height: "",
+                },
+                menu_width: {
+                    width: '220px',
+                    transaction: 0.3
+                },
+                open_menu_btn: 'el-icon-s-fold',
+                nav_data: [{
+                    id: '1',
+                    name: '首页',
+                    url: 'main.html',
+                    icon: 'el-icon-s-home',
+                    is_child: false,
+                    child: []
+                }, ]
+            }
+        },
+        mounted() {
+            const iframe = document.querySelector('#index_iframe')
+        },
+        methods: {
+            getHeight() {
+                this.defaultHeight.height = window.innerHeight + "px";
+            },
+            handleOpen(key, keyPath) {},
+            handleClose(key, keyPath) {},
+            open_menu() {
+                if (this.isCollapse) {
+                    this.menu_width.width = '220px';
+                    this.open_menu_btn = 'el-icon-s-fold';
+                    this.isCollapse = false;
+                    this.open_menu_type = true;
+                } else {
+                    this.menu_width.width = '68px';
+                    this.open_menu_btn = 'el-icon-s-unfold';
+                    this.isCollapse = true;
+                    this.open_menu_type = false;
+                }
+            },
+            jump_main(url, a, b) {
+                this.main_loading = true;
+                this.breadcrumb_a = a;
+                this.breadcrumb_b = b;
+                if (this.main_url == url) {
+                    document.getElementById('index_iframe').src = url;
+                } else {
+                    this.main_url = url;
+                }
+            },
+        },
+        created() {
+            //页面创建时执行一次getHeight进行赋值，顺道绑定resize事件
+            window.addEventListener("resize", this.getHeight);
+            this.getHeight();
+        },
+    })
+</script>
+
+</html>
