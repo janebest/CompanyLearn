@@ -1,10 +1,8 @@
-.margin_top{margin-top: 15px;}
-.margin_bottom{margin-bottom: 15px;}
-.data_item{padding:24px;border-radius: 8px;overflow: hidden;transition: all 0.4s ease-in-out;background: #ffffff;box-shadow: 0 2px 16px rgb(0 0 0 / 10%);}
-.data_item:hover{color:#ffffff;box-shadow: 0 1px 16px #ff8917;cursor: pointer;background-color: #ff8917;}
-
-
-
+html,body{min-width: 1400px;}
+.data1_box{padding: 20px;position: relative;overflow: hidden;}
+.data1_background i{ position: absolute;font-size: 160px;right: -5px;top: -1px;opacity: .2;}
+.data2_icon{width: 40%;}
+.data2_value{width: 60%;padding: 10px 0;}
 
 
 

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>elementui框架</title>
+    <link rel="stylesheet" href="../public/fontawesome-free-5.11.2-web/css/all.css">
     <link rel="stylesheet" href="../public/element/index.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/base.css">
@@ -30,18 +31,19 @@
                             <el-menu-item v-for="(item,index) in nav_data" :key="index" :index="item.id"
                                 v-if="!item.is_child" @click="jump_main(item.url,item.name,'')">
                                 <i :class="item.icon" v-if="item.icon"></i>
-                                <span slot="title">{{item.name}}</span>
+                                <span slot="title" class="m_l_10">{{item.name}}</span>
                             </el-menu-item>
                             <el-submenu v-for="(item,index) in nav_data" :key="index" :index="item.id"
                                 v-if="item.is_child">
                                 <template slot="title">
                                     <i :class="item.icon" v-if="item.icon"></i>
-                                    <span>{{item.name}}</span>
+                                    <span class="m_l_10">{{item.name}}</span>
                                 </template>
                                 <el-menu-item-group>
                                     <el-menu-item v-for="(s,i) in item.child" :key="i" :index="s.id"
                                         @click="jump_main(s.url,item.name,s.name)">
-                                        <i :class="s.icon" v-if="s.icon"></i>{{s.name}}
+                                        <i :class="s.icon" v-if="s.icon"></i>
+                                        <span class="m_l_10">{{s.name}}</span>
                                     </el-menu-item>
                                 </el-menu-item-group>
                             </el-submenu>
@@ -74,7 +76,7 @@
                         </el-col>
                     </el-row>
                 </el-header>
-                <el-main style="overflow-y: hidden;" v-loading="main_loading">
+                <el-main style="overflow-y: hidden;">
                     <div id="index_breadcrumb">
                         <el-breadcrumb>
                             <el-breadcrumb-item>{{breadcrumb_a}}</el-breadcrumb-item>
@@ -93,7 +95,6 @@
         data() {
             return {
                 main_url: 'main.html',
-                main_loading: false,
                 open_menu_type: true,
                 isCollapse: false,
                 breadcrumb_a: '首页',
@@ -108,9 +109,9 @@
                 open_menu_btn: 'el-icon-s-fold',
                 nav_data: [{
                     id: '1',
-                    name: '首页',
+                    name: '数据宫格',
                     url: 'main.html',
-                    icon: 'el-icon-s-home',
+                    icon: 'fas fa-grip-horizontal',
                     is_child: false,
                     child: []
                 }, ]
@@ -139,7 +140,6 @@
                 }
             },
             jump_main(url, a, b) {
-                this.main_loading = true;
                 this.breadcrumb_a = a;
                 this.breadcrumb_b = b;
                 if (this.main_url == url) {
