@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据展示</title>
+    <link rel="stylesheet" href="../../public/fontawesome-free-5.11.2-web/css/all.css">
+    <link rel="stylesheet" href="../../public/element/index.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <script src="../../public/js/vue.min.js"></script>
+    <script src="../../public/element/index.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="main" style="background: #E9EEF3;">
+            <el-row :gutter="20" class="m_b_15">
+                <el-col :span="8" v-for="(item_1,index_1) in data_box" >
+                    <div class="data1_box border_round t_center color_white" :class="data_box_bg[index_1]">
+                        <div class="f16">{{item_1.name}}</div>
+                        <div class="f_bold f36">{{item_1.num}}</div>
+                        <div class="m_t_15">{{item_1.desc}}</div>
+                        <div class="data1_background"><i class="fa fa-cart-plus"></i></div>
+                    </div>
+                </el-col>
+            </el-row>
+            <el-row :gutter="20" class="m_b_15">
+                <el-col :span="8" v-for="(item_1,index_1) in data_box">
+                    <div class="bg_white border_round t_center f45 display_flex align_center" :class="data_box_bg[index_1]">
+                        <div class="data2_icon color_white" ><i class="fas fa-users"></i></div>
+                        <div class="data2_value color_99 bg_white">
+                            <p>{{item_1.num}}</p><p class="f14">{{item_1.desc}}</p>
+                        </div>
+                    </div>
+                </el-col>
+            </el-row>
+            <el-row :gutter="20" class="m_b_15">
+                <el-col :span="8" v-for="(item_1,index_1) in data_box">
+                    <div class="data_box color_white border_round t_center" :class="data_box_bg[index_1]">
+                        <el-row class="f45">
+                            <el-col :span="12" class="t_right p_lr_10">
+                                <i class="fas fa-users"></i>
+                            </el-col>
+                            <el-col :span="12" class="t_left p_lr_10">
+                                <p>{{item_1.num}}</p>
+                            </el-col>
+                        </el-row>
+                        <p class="m_t_15">{{item_1.desc}}</p>
+                    </div>
+                </el-col>
+            </el-row>
+            <el-row :gutter="20" class="m_b_15">
+                <el-col :span="8" v-for="(item_1,index_1) in data_box">
+                    <div :class="data_box_bg[index_1]" class="border_round data_box">
+                        <div class="justify align_center display_flex p_lr_10">
+                            <div class="data3_circle t_center f24" :class="data_icon_bg[index_1]">
+                                <i class="fas fa-user-alt color_white"></i>
+                            </div>
+                            <div class="text-right">                                 
+                               <h5 class="f32">{{item_1.num}}</h5>
+                               <h5 class="f16">{{item_1.name}}</h5>
+                            </div>
+                         </div>
+                    </div>
+                </el-col>
+            </el-row>
+            <el-row :gutter="20" class="m_b_15">
+                <el-col :span="8" v-for="(item_1,index_1) in data_box">
+                    <div class="border_round data_box bg_white">
+                        <h5 class="f_bold m_b_15">New Customers</h5>
+                        <div class="justify display_flex m_b_15 align_baseline">
+                            <p class="f14 color_99">From last week</p>
+                            <p class="f28">45.6K</p>
+                        </div>
+                        <el-progress :show-text="false" :text-inside="false" :stroke-width="15" :percentage="70"></el-progress>
+                    </div>
+                </el-col>
+            </el-row>
+            <el-row :gutter="20" class="m_b_15">
+                <el-col :span="8" v-for="(item_1,index_1) in data_box">
+                    <div class="border_round data_box bg_white">
+                       <p class="f_bold f16 color_3d m_b_15">New Customer</p>
+                       <div class="justify display_flex align_center">
+                        <h1 class="mb-1">$12099</h1>
+                        <div class="color_2e">
+                            <span class="data4_icon"><i class="fa fa-fw fa-arrow-up"></i></span>
+                            <span>5.86%</span>
+                        </div>
+                    </div>
+                    </div>
+                </el-col>
+            </el-row>
+        </div>
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                data_box:[
+                    {id:1,name:'标题1',num:751,desc:"这是说明"},
+                    {id:2,name:'标题2',num:129,desc:"这是说明"},
+                    {id:3,name:'标题3',num:78,desc:"这是说明"},
+                ],
+                data_box_bg: ["bg_23","bg_2b","bg_e3"],
+                data_icon_bg: ["bg_08","bg_fc","bg_d8"],
+            }
+        },
+        methods: {}
+    })
+</script>
+
+</html>

@@ -94,7 +94,7 @@
         el: "#app",
         data() {
             return {
-                main_url: 'main.html',
+                main_url: './iframePage/data_box.html',
                 open_menu_type: true,
                 isCollapse: false,
                 breadcrumb_a: '首页',
@@ -107,14 +107,32 @@
                     transaction: 0.3
                 },
                 open_menu_btn: 'el-icon-s-fold',
-                nav_data: [{
-                    id: '1',
-                    name: '数据宫格',
-                    url: 'main.html',
-                    icon: 'fas fa-grip-horizontal',
-                    is_child: false,
-                    child: []
-                }, ]
+                nav_data: [
+                    {
+                        id: '1',
+                        name: '数据宫格',
+                        url: './iframePage/data_box.html',
+                        icon: 'fas fa-grip-horizontal',
+                        is_child: false,
+                        child: []
+                    },
+                    {
+                        id: '2',
+                        name: '用户信息',
+                        url: './iframePage/user_info.html',
+                        icon: 'fas fa-user-alt',
+                        is_child: false,
+                        child: []
+                    },
+                    {
+                        id: '3',
+                        name: '列表',
+                        url: './iframePage/list.html',
+                        icon: 'fas fa-clipboard-list',
+                        is_child: false,
+                        child: []
+                    },
+                 ]
             }
         },
         mounted() {
